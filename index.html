@@ -111,24 +111,26 @@
         </div>
     </header>
 
-    <!-- Section 1: Hero (憧れ) -->
+    <!-- Section 1: Hero (配置バランスを調整) -->
     <section class="relative min-h-[92vh] flex items-center justify-center overflow-hidden px-4">
         <div class="absolute inset-0 z-0 text-left">
-            <div class="w-full h-full bg-cover bg-[center_20%] opacity-100 scale-105" style="background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
-            <div class="absolute inset-0 bg-gradient-to-b from-white/10 via-white/40 to-white"></div>
+            <!-- [バランス調整: background-positionをcenter 35%に下げ、タイトルとの重なりを最適化] -->
+            <div class="w-full h-full bg-cover bg-[center_35%] opacity-90 scale-105" style="background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
+            <!-- グラデーションを調整して、より顔立ちがクリアに見えるように透過度を変更 -->
+            <div class="absolute inset-0 bg-gradient-to-b from-white/5 via-white/30 to-white/95"></div>
         </div>
 
-        <div class="relative z-10 w-full pt-16 flex flex-col items-center">
-            <div class="inline-flex items-center space-x-3 mb-8 px-4 py-1.5 rounded-full bg-white/90 shadow-xl border border-pink-50 text-left">
+        <div class="relative z-10 w-full pt-20 flex flex-col items-center">
+            <div class="inline-flex items-center space-x-3 mb-6 px-4 py-1.5 rounded-full bg-white/90 shadow-xl border border-pink-50 text-left">
                 <span class="text-[8px] font-black tracking-[0.2em] uppercase text-gray-900 text-left">User Satisfaction 98.4%</span>
             </div>
 
-            <h1 class="hero-title font-black tracking-tighter leading-[1] mb-8 serif text-slate-900">
+            <h1 class="hero-title font-black tracking-tighter leading-[1] mb-6 serif text-slate-900">
                 憧れの<br>
                 <span class="text-k-pink italic text-neon relative">神シルエット</span>へ。
             </h1>
 
-            <p class="text-[12px] md:text-lg text-gray-500 tracking-[0.1em] leading-relaxed max-w-sm mx-auto font-medium mb-12">
+            <p class="text-[12px] md:text-lg text-gray-500 tracking-[0.1em] leading-relaxed max-w-sm mx-auto font-medium mb-10">
                 韓国女子みたいなスタイルになりたい女の子、大注目。<br>
                 15分の精密メンテナンスで、理想のラインを現実に。
             </p>
@@ -140,9 +142,9 @@
         </div>
     </section>
 
-    <!-- Section 2: Pain & Empathy (悩み) -->
+    <!-- Section 2: Pain & Empathy -->
     <section class="py-24 px-6 bg-white">
-        <div class="max-w-xl mx-auto space-y-12">
+        <div class="max-w-xl mx-auto space-y-12 text-center">
             <div class="space-y-4">
                 <span class="text-k-pink font-black text-[9px] uppercase tracking-[0.5em] font-mont">The Target</span>
                 <h2 class="text-2xl md:text-3xl font-bold serif text-slate-800 leading-tight">
@@ -151,23 +153,23 @@
             </div>
             
             <div class="image-container">
-                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Empathy Image" class="w-full aspect-[4/5] object-cover">
+                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Self-Check" class="w-full aspect-[4/5] object-cover">
                 <div class="absolute inset-0 bg-gradient-to-t from-pink-100/40 via-transparent to-transparent"></div>
-                <div class="absolute bottom-8 left-1/2 -translate-x-1/2 w-[88%] glass-premium p-4 rounded-2xl border border-pink-50 text-center">
-                    <p class="text-[11px] font-bold text-slate-800 leading-relaxed italic">「ダイエットしても、ここの脂肪だけ落ちない…」</p>
+                <div class="absolute bottom-8 left-1/2 -translate-x-1/2 w-[88%] glass-premium p-4 rounded-2xl border border-pink-50 text-center text-slate-800">
+                    <p class="text-[11px] font-bold leading-relaxed italic">「ダイエットしても、ここの脂肪だけ落ちない…」</p>
                 </div>
             </div>
 
-            <p class="text-gray-800 leading-loose text-[13px] font-medium max-w-sm mx-auto">
+            <p class="text-gray-800 leading-loose text-[13px] font-medium max-w-sm mx-auto text-center">
                 どんなに我慢しても、落としたいウエストや二の腕の脂肪だけが変わらない。そんなあなたに。韓国発の最新アプローチが、眠っていた「神シルエット」を呼び覚まします。
             </p>
         </div>
     </section>
 
-    <!-- Section 3: The Solution (技術) -->
+    <!-- Section 3: The Solution -->
     <section class="py-24 bg-[#fff9f9] px-6 overflow-hidden">
         <div class="max-w-xl mx-auto space-y-12 flex flex-col items-center">
-            <div class="space-y-6">
+            <div class="space-y-6 text-center">
                 <div class="inline-flex items-center justify-center space-x-2 bg-white px-3 py-1 rounded-full border border-pink-100 opacity-80">
                      <svg width="16" height="10" viewBox="0 0 30 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="rounded-[2px] shadow-sm"><rect width="30" height="20" fill="white"/><circle cx="15" cy="10" r="5" fill="#cd2e3a"/><mask id="m1" maskUnits="userSpaceOnUse" x="10" y="5" width="10" height="10"><circle cx="15" cy="10" r="5"/></mask><g mask="url(#m1)"><rect x="15" y="10" width="10" height="5" fill="#0047a0"/></g></svg>
                     <span class="text-[7px] font-black tracking-[0.2em] uppercase text-gray-600">Innovation from Seoul</span>
@@ -181,30 +183,30 @@
                 <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Innovation Face" class="w-full h-full object-cover">
             </div>
 
-            <div class="grid grid-cols-1 gap-5 w-full max-w-sm">
-                <div class="bg-white p-7 rounded-[2.2rem] shadow-sm border border-pink-50 text-left relative overflow-hidden">
+            <div class="grid grid-cols-1 gap-5 w-full max-w-sm text-left">
+                <div class="bg-white p-7 rounded-[2.2rem] shadow-sm border border-pink-50 relative overflow-hidden">
                     <div class="relative z-10">
-                        <h3 class="font-bold text-[14px] mb-3 text-slate-800 flex items-center text-left">
+                        <h3 class="font-bold text-[14px] mb-3 text-slate-800 flex items-center">
                             <span class="w-1 h-5 bg-k-pink mr-3 rounded-full"></span>
                             運動・過度な制限はなしでOK
                         </h3>
-                        <p class="text-[11px] text-gray-700 font-medium leading-relaxed text-left">我慢するダイエットはもう終わり。韓国の最新テクノロジーが脂肪細胞そのものを精密にターゲットします。</p>
+                        <p class="text-[11px] text-gray-700 font-medium leading-relaxed">我慢するダイエットはもう終わり。韓国の最新テクノロジーが脂肪細胞そのものを精密にターゲットします。</p>
                     </div>
                 </div>
-                <div class="bg-white p-7 rounded-[2.2rem] shadow-sm border border-pink-50 text-left relative overflow-hidden text-left">
+                <div class="bg-white p-7 rounded-[2.2rem] shadow-sm border border-pink-50 relative overflow-hidden">
                     <div class="relative z-10">
-                        <h3 class="font-bold text-[14px] mb-3 text-slate-800 flex items-center text-left">
+                        <h3 class="font-bold text-[14px] mb-3 text-slate-800 flex items-center">
                             <span class="w-1 h-5 bg-k-pink mr-3 rounded-full"></span>
                             リラックスしながら受けるだけ
                         </h3>
-                        <p class="text-[11px] text-gray-700 font-medium leading-relaxed text-left">痛みやダウンタイムはほぼ無く、施術中はスマホを見ながらでもOK。多忙な毎日を送るあなたに最適です。</p>
+                        <p class="text-[11px] text-gray-700 font-medium leading-relaxed">痛みやダウンタイムはほぼ無く、施術中はスマホを見ながらでもOK。多忙な毎日を送るあなたに最適です。</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Section 4: Efficiency (15分・タイパ) -->
+    <!-- Section 4: Efficiency -->
     <section class="py-24 bg-white px-6">
         <div class="max-w-xl mx-auto space-y-12 text-center">
             <div class="space-y-4">
@@ -229,10 +231,10 @@
     </section>
 
     <!-- Section 5: AI Diagnostic -->
-    <section id="ai-sim" class="py-24 bg-slate-50 relative overflow-hidden px-6">
-        <div class="max-w-xl mx-auto relative z-10 flex flex-col items-center text-center">
+    <section id="ai-sim" class="py-24 bg-slate-50 relative overflow-hidden px-6 text-center">
+        <div class="max-w-xl mx-auto relative z-10 flex flex-col items-center">
             <div class="mb-12">
-                <div class="inline-block px-4 py-1 rounded-full bg-white border border-pink-100 text-k-pink font-bold text-[8px] uppercase tracking-[0.3em] mb-4 shadow-sm text-center">K-Silhouette Predictor v5.0</div>
+                <div class="inline-block px-4 py-1 rounded-full bg-white border border-pink-100 text-k-pink font-bold text-[8px] uppercase tracking-[0.3em] mb-4 shadow-sm">K-Silhouette Predictor v5.0</div>
                 <h2 class="text-2xl font-black serif text-slate-900 leading-tight tracking-tight text-center">✨ 未来の貴女を、<br>今ここで映し出す。</h2>
             </div>
 
@@ -286,20 +288,20 @@
         </div>
     </section>
 
-    <!-- Section 6: CTA (成功後の投影) - 新しいビジュアルに変更 -->
-    <section id="cta" class="relative py-64 bg-white text-slate-800 px-5 overflow-hidden flex flex-col items-center justify-center">
+    <!-- Section 6: CTA (配置調整済) -->
+    <section id="cta" class="relative py-64 bg-white text-slate-800 px-5 overflow-hidden flex flex-col items-center justify-center text-center">
         <div class="absolute inset-0 z-0">
-            <!-- [新しい完成ビジュアル: より都会的で凛とした表情のモデル] -->
-            <div class="w-full h-full bg-cover bg-[center_15%] opacity-85 transition-transform duration-[20s] hover:scale-110" style="background-image: url('https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
+            <!-- [新ビジュアル: 凛とした表情のモデル。background-positionを調整してバランス良く表示] -->
+            <div class="w-full h-full bg-cover bg-[center_20%] opacity-85 transition-transform duration-[20s] hover:scale-110" style="background-image: url('https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
             <div class="absolute inset-0 bg-gradient-to-b from-white/20 via-white/50 to-white"></div>
         </div>
         
         <div class="relative z-10 w-full max-w-xl mx-auto flex flex-col items-center text-center">
             <span class="text-k-pink font-black text-[10px] uppercase tracking-[1.2em] mb-10 block font-mont italic">The Iconic Journey</span>
             
-            <h2 class="font-black mb-10 tracking-tighter serif italic text-slate-900 leading-[1.3] text-center">
+            <h2 class="font-black mb-10 tracking-tighter serif italic text-slate-900 leading-[1.3]">
                 <span class="block whitespace-nowrap text-[7.5vw] xs:text-[2.8rem] md:text-7xl">今度はあなたが、</span>
-                <span class="text-k-pink underline decoration-pink-100 decoration-[8px] underline-offset-[10px] block mt-3 whitespace-nowrap text-[7.5vw] xs:text-[2.8rem] md:text-7xl text-center">憧れられる番。</span>
+                <span class="text-k-pink underline decoration-pink-100 decoration-[8px] underline-offset-[10px] block mt-3 whitespace-nowrap text-[7.5vw] xs:text-[2.8rem] md:text-7xl">憧れられる番。</span>
             </h2>
             
             <p class="text-gray-800 mb-16 text-[13px] tracking-[0.2em] leading-loose font-bold px-4 max-w-xs mx-auto">
@@ -307,10 +309,10 @@
                 公式LINEから、最高の近道を予約してください。
             </p>
             
-            <button onclick="window.open('#', '_blank')" class="group relative inline-flex items-center justify-center px-10 py-7 bg-[#06C755] text-white font-black rounded-[2.2rem] shadow-[0_20px_50px_rgba(6,199,85,0.3)] active:scale-95 transition-transform w-full max-w-[320px] overflow-hidden mx-auto">
+            <button onclick="window.open('#', '_blank')" class="group relative inline-flex items-center justify-center px-10 py-7 bg-[#06C755] text-white font-black rounded-[2.2rem] shadow-[0_20px_50px_rgba(6,199,85,0.3)] active:scale-95 transition-transform w-full max-w-[320px] mx-auto overflow-hidden">
                 <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 <svg class="w-8 h-8 mr-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.121.303.079.778.039 1.085l-.171 1.047c-.052.313-.252 1.223 1.083.667 1.335-.556 7.203-4.243 9.831-7.262 1.748-1.849 2.125-3.844 2.125-5.732z"/></svg>
-                <span class="text-lg xs:text-xl tracking-tighter whitespace-nowrap">LINEで無料診断・予約</span>
+                <span class="text-lg xs:text-xl tracking-tighter whitespace-nowrap text-white">LINEで無料診断・予約</span>
             </button>
         </div>
     </section>
@@ -318,11 +320,11 @@
     <!-- Footer -->
     <footer class="py-24 bg-white text-gray-600 text-center text-[9px] border-t border-pink-50 flex flex-col items-center">
         <div class="max-w-6xl mx-auto px-6 text-center">
-            <p class="mb-5 tracking-[0.8em] uppercase font-black font-mont text-xs text-slate-300 select-none">SURULIM GLOBAL</p>
+            <p class="mb-5 tracking-[0.8em] uppercase font-black font-mont text-xs text-slate-300 select-none text-center">SURULIM GLOBAL</p>
             <p class="leading-loose font-bold text-gray-600">
                 Seoul HQ: Gangnam-gu, Seoul, KR | Tokyo Branch: Minato-ku, JP <br>
                 &copy; 2024 SURULIM Group. All Rights Reserved. <br>
-                <span class="opacity-60 block mt-6 max-w-xs mx-auto leading-relaxed text-center font-normal">※施術効果には個人差があります。科学的根拠に基づいた精密シミュレーションを提供しています。</span>
+                <span class="opacity-60 block mt-6 max-w-xs mx-auto leading-relaxed font-normal">※施術効果には個人差があります。科学的根拠に基づいた精密シミュレーションを提供しています。</span>
             </p>
         </div>
     </footer>
