@@ -7,70 +7,76 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;700;900&family=Shippori+Mincho:wght@400;700&family=Noto+Sans+KR:wght@100;400;900&family=Montserrat:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;700;900&family=Shippori+Mincho:wght@400;700&family=Noto+Sans+KR:wght@100;400;900&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
     <style>
         :root {
+            --k-pink: #f3a3a3;
             --k-pink-light: #fff5f5;
-            --k-pink-main: #f3a3a3;
-            --k-pink-dark: #e88d8d;
-            --k-text: #2d3436;
+            --k-accent: #ff8e8e;
         }
         body {
             font-family: 'Noto Sans JP', 'Noto Sans KR', sans-serif;
             scroll-behavior: smooth;
             background-color: #ffffff;
-            color: var(--k-text);
+            color: #333;
             -webkit-text-size-adjust: 100%;
         }
         .serif { font-family: 'Shippori Mincho', serif; }
         .font-mont { font-family: 'Montserrat', sans-serif; }
         
+        /* 輝くプレミアムボタン */
         .btn-luminous {
             background: linear-gradient(135deg, #f3a3a3 0%, #fbc2c2 100%);
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
             letter-spacing: 0.2em;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 10px 30px rgba(243, 163, 163, 0.3);
         }
-        .btn-luminous:active {
-            transform: scale(0.95);
+        .btn-luminous::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -100%;
+            width: 100%;
+            height: 200%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transform: rotate(45deg);
+            animation: shine 4s infinite;
         }
+        @keyframes shine {
+            0% { left: -100%; }
+            20% { left: 100%; }
+            100% { left: 100%; }
+        }
+        .btn-luminous:active { transform: scale(0.96); }
         
-        .glass-ui {
+        .glass-premium {
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(243, 163, 163, 0.1);
+            border: 1px solid rgba(243, 163, 163, 0.1);
         }
 
-        @keyframes scanner-line {
+        /* AIスキャンアニメーション */
+        @keyframes scanner-move {
             0% { top: 0%; opacity: 0; }
             10% { opacity: 1; }
             90% { opacity: 1; }
             100% { top: 100%; opacity: 0; }
         }
-        .scanner-bar {
+        .scanner-effect {
             position: absolute;
             width: 100%;
             height: 3px;
-            background: linear-gradient(90deg, transparent, var(--k-pink-main), transparent);
-            box-shadow: 0 0 20px var(--k-pink-main);
-            animation: scanner-line 3s infinite ease-in-out;
+            background: linear-gradient(90deg, transparent, var(--k-pink), transparent);
+            box-shadow: 0 0 20px var(--k-pink);
+            animation: scanner-move 2.5s infinite ease-in-out;
             z-index: 30;
         }
 
-        .fade-in-up {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.8s ease-out;
-        }
-        .fade-in-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .floating-action {
+        .floating-cta {
             position: fixed;
-            bottom: 20px;
+            bottom: 25px;
             left: 50%;
             transform: translateX(-50%);
             width: 92%;
@@ -78,137 +84,218 @@
             z-index: 1000;
         }
 
-        /* Responsive Title adjustment for Mobile */
         .hero-title {
-            font-size: clamp(2.5rem, 12vw, 8rem);
+            font-size: clamp(2.4rem, 11.5vw, 7rem);
+        }
+        
+        .text-neon {
+            text-shadow: 0 0 15px rgba(243, 163, 163, 0.4);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease-out;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 250px;
+            padding-bottom: 1rem;
+        }
+        .faq-item.active svg { transform: rotate(180deg); }
+
+        .image-container {
+            position: relative;
+            border-radius: 2.5rem;
+            overflow: hidden;
+            border: 4px border-white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
         }
     </style>
 </head>
-<body class="overflow-x-hidden antialiased mobile-viewport">
+<body class="overflow-x-hidden antialiased">
 
-    <!-- Minimalist Header (Meta Ad Optimized) -->
-    <header class="fixed top-0 w-full z-[100] px-5 py-3 flex justify-between items-center glass-ui">
+    <!-- Header -->
+    <header class="fixed top-0 w-full z-[100] px-5 py-3 flex justify-between items-center glass-premium border-b border-pink-50/50">
         <div class="font-mont font-black tracking-[0.3em] text-sm uppercase text-slate-800">SURULIM</div>
-        <a href="#ai-sim" class="text-[9px] font-bold tracking-[0.2em] border-b border-k-pink-main text-k-pink-main uppercase">Analysis</a>
+        <div class="flex items-center space-x-2">
+            <span class="text-[8px] font-bold text-k-pink uppercase tracking-[0.1em]">Gangnam Quality</span>
+            <div class="w-1.5 h-1.5 rounded-full bg-k-pink animate-pulse"></div>
+        </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-white px-4">
+    <!-- Section 1: Hero (CV特化型) -->
+    <section class="relative min-h-[92vh] flex items-center justify-center overflow-hidden px-4 text-center">
         <div class="absolute inset-0 z-0">
-            <div class="w-full h-full bg-cover bg-center opacity-90" style="background-image: url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
+            <!-- [明るい自然光とスタジオライトに包まれた、最高に美しい韓国人女性のポートレート] -->
+            <div class="w-full h-full bg-cover bg-center opacity-95 scale-105" style="background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
             <div class="absolute inset-0 bg-gradient-to-b from-white/20 via-white/40 to-white"></div>
         </div>
 
-        <div class="relative z-10 text-center w-full pt-16">
-            <div class="inline-flex items-center space-x-2 mb-6 px-4 py-1.5 rounded-full bg-white/90 border border-pink-50 shadow-lg">
-                <span class="text-[8px] font-black tracking-[0.3em] uppercase text-k-pink-main font-mont">The Peak of K-Body Line</span>
-                <span class="w-1.5 h-1.5 rounded-full bg-k-pink-main animate-ping"></span>
+        <div class="relative z-10 w-full pt-16">
+            <div class="inline-flex items-center space-x-3 mb-8 px-5 py-1.5 rounded-full bg-white/90 shadow-xl border border-pink-50">
+                <span class="text-[9px] font-black tracking-[0.2em] uppercase text-gray-800">User Satisfaction 98.4%</span>
             </div>
 
-            <h1 class="hero-title font-black tracking-tighter leading-[0.95] mb-6 serif text-slate-900">
-                <span class="text-[10px] block font-mont font-light tracking-[1em] text-k-pink-main mb-4 opacity-70 uppercase">Selection defines Perfection</span>
+            <h1 class="hero-title font-black tracking-tighter leading-[1] mb-8 serif text-slate-900">
                 憧れの<br>
-                <span class="text-k-pink-main italic relative">神シルエット</span>へ。
+                <span class="text-k-pink italic text-neon relative">神シルエット</span>へ。
             </h1>
 
-            <p class="text-xs md:text-xl text-gray-400 tracking-[0.2em] leading-relaxed max-w-lg mx-auto font-light mb-10">
-                韓国最高峰のエステティック知能。<br>
-                15分の精密な選択が、人生を輝かせる。
+            <p class="text-xs md:text-xl text-gray-400 tracking-[0.1em] leading-relaxed max-w-sm mx-auto font-light mb-12">
+                韓国女子みたいなスタイルになりたい女の子、大注目。<br>
+                15分の精密メンテナンスで、理想のラインを現実に。
             </p>
 
             <div class="flex flex-col items-center">
-                <a href="#ai-sim" class="btn-luminous px-12 py-5 text-white font-black rounded-full shadow-xl text-sm w-full max-w-[280px]">
-                    ✨ AI診断をはじめる
+                <a href="#ai-sim" class="btn-luminous px-12 py-5 text-white font-black rounded-full text-sm w-full max-w-[280px] tracking-widest uppercase">
+                    ✨ AI診断で理想を見る
                 </a>
+                <p class="mt-4 text-[9px] text-gray-400 font-bold uppercase tracking-widest">K-Beauty AI Engine v4.8</p>
             </div>
         </div>
     </section>
 
-    <!-- Logic Section -->
-    <section class="py-24 px-6 bg-white overflow-hidden">
-        <div class="max-w-4xl mx-auto space-y-16">
-            <div class="relative rounded-[2.5rem] overflow-hidden shadow-xl border-4 border-white group">
-                <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Result" class="w-full aspect-square object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-transparent"></div>
+    <!-- Section 2: Pain & Empathy (ターゲットの深い悩みに寄り添う) -->
+    <section class="py-24 px-6 bg-white text-center">
+        <div class="max-w-xl mx-auto space-y-12">
+            <div class="text-center space-y-4">
+                <span class="text-k-pink font-black text-[10px] uppercase tracking-[0.5em] font-mont">The Target</span>
+                <h2 class="text-3xl font-bold serif text-slate-800 leading-tight">
+                    某有名韓国アイドル<br>みたいになりたいのに、
+                </h2>
+            </div>
+            
+            <div class="image-container">
+                <!-- [鏡の前で二の腕やウエストを気にする都会的な韓国人女性] -->
+                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Empathy Image" class="w-full aspect-[4/5] object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-pink-100/40 via-transparent to-transparent"></div>
+                <div class="absolute bottom-8 left-1/2 -translate-x-1/2 w-[88%] glass-premium p-5 rounded-2xl border border-pink-50">
+                    <p class="text-[12px] font-bold text-slate-800 leading-relaxed italic">「ダイエットしても、ここの脂肪だけ落ちない…」</p>
+                </div>
             </div>
 
-            <div class="space-y-8">
-                <span class="text-k-pink-main font-black text-[9px] uppercase tracking-[0.5em] font-mont">Smart Selection</span>
-                <h2 class="text-3xl md:text-5xl font-bold serif leading-tight text-slate-800">
-                    「無理」な努力は、<br>
-                    <span class="text-k-pink-main italic underline decoration-pink-50 decoration-4">もう要らない。</span>
-                </h2>
+            <div class="space-y-8 text-left">
                 <p class="text-gray-500 leading-loose text-sm font-light">
-                    どんなにダイエットをしても、落としたい部位だけ変わらない。その正体は皮下脂肪細胞の蓄積。<br>スルリムは最新技術でその細胞自体を精密破壊します。
+                    どんなに我慢しても、落としたいウエストや二の腕の脂肪だけが変わらない。そんなあなたに。韓国発の最新アプローチが、眠っていた「神シルエット」を呼び覚まします。
                 </p>
-                <div class="flex items-center space-x-10">
-                    <div>
-                        <p class="text-3xl font-black text-k-pink-main font-mont italic tracking-tighter">-35.8%</p>
-                        <span class="text-[8px] font-bold text-gray-300 uppercase tracking-widest mt-1 block">Reduction</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: The Solution (科学的納得感) -->
+    <section class="py-24 bg-[#fff9f9] px-6 text-center overflow-hidden">
+        <div class="max-w-xl mx-auto space-y-12">
+            <div class="text-center space-y-6">
+                <div class="inline-flex items-center space-x-2 bg-white px-3 py-1 rounded-full border border-pink-100 opacity-80">
+                     <svg width="18" height="12" viewBox="0 0 30 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="rounded-[2px] shadow-sm"><rect width="30" height="20" fill="white"/><circle cx="15" cy="10" r="5" fill="#cd2e3a"/><mask id="m1" maskUnits="userSpaceOnUse" x="10" y="5" width="10" height="10"><circle cx="15" cy="10" r="5"/></mask><g mask="url(#m1)"><rect x="15" y="10" width="10" height="5" fill="#0047a0"/></g></svg>
+                    <span class="text-[8px] font-black tracking-[0.2em] uppercase text-gray-500">Innovation from Seoul</span>
+                </div>
+                <h2 class="text-3xl font-bold serif text-slate-800 leading-tight">
+                    部分痩せに特化した<br><span class="text-k-pink italic">韓国発・最新施術。</span>
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 gap-6">
+                <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-pink-50 text-left relative overflow-hidden">
+                    <div class="relative z-10">
+                        <h3 class="font-bold text-base mb-3 text-slate-800 flex items-center">
+                            <span class="w-1.5 h-6 bg-k-pink mr-3 rounded-full"></span>
+                            運動・過度な制限はなしでOK
+                        </h3>
+                        <p class="text-[12px] text-gray-400 font-light leading-relaxed">我慢するダイエットはもう終わり。韓国の最新テクノロジーが脂肪細胞そのものを精密にターゲットします。</p>
                     </div>
-                    <div class="w-[1px] h-10 bg-pink-100"></div>
-                    <div>
-                        <p class="text-3xl font-black text-k-pink-main font-mont tracking-tighter">15m</p>
-                        <span class="text-[8px] font-bold text-gray-300 uppercase tracking-widest mt-1 block">Process</span>
+                </div>
+                <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-pink-50 text-left relative overflow-hidden">
+                    <div class="relative z-10">
+                        <h3 class="font-bold text-base mb-3 text-slate-800 flex items-center">
+                            <span class="w-1.5 h-6 bg-k-pink mr-3 rounded-full"></span>
+                            リラックスしながら受けるだけ
+                        </h3>
+                        <p class="text-[12px] text-gray-400 font-light leading-relaxed">痛みやダウンタイムはほぼ無く、施術中はスマホを見ながらでもOK。多忙な毎日を送るあなたに最適です。</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- AI Diagnostic v4.0 (Portrait Optimized for Meta) -->
-    <section id="ai-sim" class="py-24 bg-slate-50 relative overflow-hidden">
-        <div class="max-w-xl mx-auto px-6 relative z-10">
-            <div class="text-center mb-16">
-                <div class="inline-block px-4 py-1 rounded-full bg-white border border-pink-50 text-k-pink-main font-bold text-[9px] uppercase tracking-[0.3em] mb-4">K-Predictor v4.0</div>
-                <h2 class="text-3xl font-black serif tracking-tight text-slate-900">✨ 未来の貴女を、<br>今ここで映し出す。</h2>
+    <!-- Section 4: Efficiency (15分・タイパ) -->
+    <section class="py-24 bg-white px-6 text-center">
+        <div class="max-w-xl mx-auto space-y-12">
+            <div class="text-center space-y-4">
+                <span class="text-k-pink font-black text-[10px] uppercase tracking-[0.5em] font-mont">Time Performance</span>
+                <h2 class="text-3xl font-bold serif text-slate-800 leading-tight">
+                    1回わずか15分。<br><span class="underline decoration-pink-100 decoration-8 underline-offset-4">忙しくても通える。</span>
+                </h2>
+            </div>
+            
+            <div class="image-container aspect-video">
+                <!-- [都会的な街中で、理想的なラインで颯爽と歩く韓国人女性] -->
+                <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Quick Session" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-pink-900/40 via-transparent to-transparent"></div>
+                <div class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white">
+                    <p class="text-[10px] font-bold tracking-[0.5em] uppercase">15 Minutes Magic</p>
+                </div>
+            </div>
+
+            <p class="text-gray-400 text-xs leading-loose font-light px-4">
+                ランチタイムや仕事・学校の合間に。本場・江南クオリティのメンテナンスを。多忙なスケジュールをこなしながら、憧れのシルエットを手に入れられます。
+            </p>
+        </div>
+    </section>
+
+    <!-- Section 5: AI Diagnostic (ユーザー体験) -->
+    <section id="ai-sim" class="py-24 bg-slate-50 relative overflow-hidden text-center px-6">
+        <div class="max-w-xl mx-auto relative z-10">
+            <div class="mb-12">
+                <div class="inline-block px-4 py-1 rounded-full bg-white border border-pink-100 text-k-pink font-bold text-[9px] uppercase tracking-[0.3em] mb-4 shadow-sm">K-Silhouette Predictor v5.0</div>
+                <h2 class="text-3xl font-black serif text-slate-900 leading-tight tracking-tight">✨ 未来の貴女を、<br>今ここで映し出す。</h2>
             </div>
 
             <div class="space-y-8">
-                <!-- Premium Input Panel -->
-                <div class="glass-ui p-8 rounded-[2.5rem] shadow-xl border-white">
-                    <div class="space-y-10 text-left">
-                        <div class="space-y-4">
-                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] font-mont">01. 理想のスターイメージ</label>
-                            <input id="targetStyle" type="text" placeholder="例：有名アイドルのような美脚" class="w-full bg-transparent border-b border-pink-100 focus:border-k-pink-main py-4 outline-none transition-all text-sm font-light text-slate-600">
+                <!-- Input Panel -->
+                <div class="glass-premium p-10 rounded-[3rem] shadow-xl border-white text-left">
+                    <div class="space-y-12">
+                        <div class="space-y-5">
+                            <label class="block text-[11px] font-black text-slate-400 uppercase tracking-[0.3em] font-mont">01. 理想のスターイメージ</label>
+                            <input id="targetStyle" type="text" placeholder="例：有名アイドルのような美脚" class="w-full bg-transparent border-b border-pink-100 focus:border-k-pink py-4 outline-none transition-all text-base font-light text-slate-700">
                         </div>
-                        <div class="space-y-4">
-                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] font-mont">02. 重点解析エリア</label>
-                            <select id="concernArea" class="w-full bg-transparent border-b border-pink-100 focus:border-k-pink-main py-4 outline-none appearance-none cursor-pointer text-sm font-light text-slate-600">
-                                <option value="二の腕">二の腕を華奢にしたい</option>
+                        <div class="space-y-5">
+                            <label class="block text-[11px] font-black text-slate-400 uppercase tracking-[0.3em] font-mont">02. スキャンの重点部位</label>
+                            <select id="concernArea" class="w-full bg-transparent border-b border-pink-100 focus:border-k-pink py-4 outline-none appearance-none cursor-pointer text-base font-light text-slate-700">
+                                <option value="二の腕">二の腕を華奢に見せたい</option>
                                 <option value="お腹周り・ウエスト">ウエストのくびれを作りたい</option>
                                 <option value="太もも">太ももに隙間がほしい</option>
                                 <option value="ふくらはぎ">足首までスッキリさせたい</option>
                             </select>
                         </div>
-                        <button id="diagnoseBtn" class="w-full py-6 btn-luminous rounded-2xl font-black text-white text-lg tracking-[0.3em] uppercase">
-                            Start Scanning
+                        <button id="diagnoseBtn" class="w-full py-7 btn-luminous rounded-[2rem] font-black text-white text-lg tracking-[0.3em] uppercase shadow-lg">
+                            SCAN START
                         </button>
                     </div>
                 </div>
 
-                <!-- Result Display (Meta Portrait Optimized) -->
+                <!-- Result area -->
                 <div id="resultArea" class="hidden space-y-6">
-                    <div class="glass-ui p-8 rounded-[2rem] border-pink-100 bg-white shadow-lg text-left relative overflow-hidden">
-                        <div class="flex items-center space-x-3 mb-6">
+                    <div class="glass-premium p-8 rounded-[2.5rem] border-pink-100 bg-white shadow-lg text-left relative overflow-hidden">
+                        <div class="flex items-center space-x-3 mb-6 text-k-pink">
                             <span class="relative flex h-3 w-3">
-                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-k-pink-main opacity-75"></span>
-                                <span class="relative inline-flex rounded-full h-3 w-3 bg-k-pink-main"></span>
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-k-pink opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-3 w-3 bg-k-pink"></span>
                             </span>
-                            <span class="text-[9px] font-black text-k-pink-main uppercase tracking-[0.3em] font-mont">Personal K-Report</span>
+                            <span class="text-[9px] font-black uppercase tracking-[0.4em] font-mont">K-Analytical Report</span>
                         </div>
-                        <div id="aiTextResult" class="text-sm leading-relaxed text-gray-500 font-light whitespace-pre-wrap italic"></div>
+                        <div id="aiTextResult" class="text-sm leading-loose text-gray-500 font-light whitespace-pre-wrap italic"></div>
                     </div>
                     
-                    <div id="aiImageContainer" class="hidden relative rounded-[2rem] overflow-hidden shadow-2xl bg-white aspect-[4/5] border-4 border-white">
-                        <img id="aiImageResult" src="" alt="AI Result" class="w-full h-full object-cover">
-                        <div id="imageLoadingOverlay" class="absolute inset-0 bg-white/98 flex flex-col items-center justify-center p-10">
+                    <div id="aiImageContainer" class="hidden relative rounded-[2.5rem] overflow-hidden shadow-2xl bg-white aspect-[4/5] border-4 border-white">
+                        <img id="aiImageResult" src="" alt="AI Predicted Line" class="w-full h-full object-cover">
+                        <div id="imageLoadingOverlay" class="absolute inset-0 bg-white/98 flex flex-col items-center justify-center p-12">
                             <div class="loading-spinner mb-6"></div>
                             <div class="text-center">
-                                <p class="text-[9px] text-k-pink-main uppercase tracking-[0.6em] font-black mb-4">Luminous Projection</p>
-                                <p id="scanningText" class="text-gray-300 text-[8px] italic tracking-widest font-mont">Connecting HQ Cloud...</p>
+                                <p class="text-[9px] text-k-pink uppercase tracking-[0.6em] font-black mb-4">Rendering Perfection</p>
+                                <p id="scanningText" class="text-gray-300 text-[8px] italic tracking-widest font-mont text-center">Syncing with Seoul HQ...</p>
                             </div>
-                            <div class="scanner-bar"></div>
+                            <div class="scanner-effect"></div>
                         </div>
                     </div>
                 </div>
@@ -216,28 +303,30 @@
         </div>
     </section>
 
-    <!-- Final CTA Section (Meta High-Conversion) -->
-    <section id="cta" class="relative py-48 bg-white text-slate-800 text-center px-5 overflow-hidden">
+    <!-- Section 6: CTA (成功後の投影) -->
+    <section id="cta" class="relative py-64 bg-white text-slate-800 text-center px-5 overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <div class="w-full h-full bg-cover bg-center opacity-85" style="background-image: url('https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
+            <!-- [白のトップスを完璧に着こなす、洗練された理想的な韓国人女性] -->
+            <div class="w-full h-full bg-cover bg-[center_15%] opacity-95 transition-transform duration-[20s] hover:scale-110" style="background-image: url('https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
             <div class="absolute inset-0 bg-gradient-to-b from-white/10 via-white/80 to-white"></div>
         </div>
         
         <div class="relative z-10 max-w-xl mx-auto">
-            <span class="text-k-pink-main font-black text-[10px] uppercase tracking-[1em] mb-10 block font-mont">Become the Icon</span>
-            <h2 class="text-4xl md:text-7xl font-black mb-10 tracking-tighter serif italic text-slate-900">
-                今度は貴女が、<br>
-                <span class="text-k-pink-main underline decoration-pink-50 decoration-[16px] underline-offset-[10px]">憧れになる番。</span>
+            <span class="text-k-pink font-black text-[11px] uppercase tracking-[1.2em] mb-10 block font-mont italic">The Iconic Journey</span>
+            <h2 class="text-5xl md:text-8xl font-black mb-10 tracking-tighter serif italic text-slate-900 leading-[1.1]">
+                今度はあなたが、<br>
+                <span class="text-k-pink underline decoration-pink-100 decoration-[16px] underline-offset-8">憧れられる番。</span>
             </h2>
-            <p class="text-gray-400 mb-16 text-sm tracking-[0.2em] leading-loose font-light">
-                公式LINEから、最短の近道を。
+            <p class="text-gray-400 mb-16 text-sm tracking-[0.2em] leading-loose font-light px-4">
+                韓国アイドルみたいなシルエットへ。<br>
+                公式LINEから、最高の近道を予約してください。
             </p>
             
             <div class="flex flex-col items-center">
-                <button onclick="window.open('#', '_blank')" class="group relative inline-flex items-center justify-center px-14 py-8 bg-[#06C755] text-white font-black rounded-[2.5rem] shadow-2xl active:scale-95 transition-transform w-full overflow-hidden">
+                <button onclick="window.open('#', '_blank')" class="group relative inline-flex items-center justify-center px-14 py-8 bg-[#06C755] text-white font-black rounded-[2.5rem] shadow-[0_20px_50px_rgba(6,199,85,0.3)] active:scale-95 transition-transform w-full overflow-hidden">
                     <svg class="w-10 h-10 mr-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.121.303.079.778.039 1.085l-.171 1.047c-.052.313-.252 1.223 1.083.667 1.335-.556 7.203-4.243 9.831-7.262 1.748-1.849 2.125-3.844 2.125-5.732z"/></svg>
-                    <div class="text-left leading-tight">
-                        <p class="text-[9px] opacity-70 uppercase tracking-[0.2em] mb-1 font-mont font-bold">Priority Reception</p>
+                    <div class="text-left leading-tight text-white">
+                        <p class="text-[9px] opacity-70 uppercase tracking-[0.2em] mb-1 font-mont font-bold">Priority Reception Open</p>
                         <p class="text-xl tracking-tighter">LINEで無料診断・予約</p>
                     </div>
                 </button>
@@ -246,18 +335,19 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-24 bg-white text-gray-300 text-center text-[9px] border-t border-pink-50">
+    <footer class="py-32 bg-white text-gray-300 text-center text-[10px] border-t border-pink-50">
         <div class="max-w-6xl mx-auto px-6">
-            <p class="mb-4 tracking-[0.5em] uppercase font-black font-mont text-sm">SURULIM GLOBAL</p>
-            <p class="leading-loose font-light">
-                &copy; 2024 SURULIM Group. Seoul | Tokyo <br>
-                <span class="opacity-60">※施術効果には個人差があります。</span>
+            <p class="mb-5 tracking-[0.8em] uppercase font-black font-mont text-sm text-slate-200 select-none">SURULIM GLOBAL</p>
+            <p class="leading-loose font-light text-gray-400">
+                Seoul HQ: Gangnam-gu, Seoul, KR | Tokyo Branch: Minato-ku, JP <br>
+                &copy; 2024 SURULIM Group. All Rights Reserved. <br>
+                <span class="opacity-40 block mt-6 max-w-xs mx-auto leading-relaxed">※施術効果には個人差があります。科学的根拠に基づいた精密シミュレーションを提供しています。</span>
             </p>
         </div>
     </footer>
 
-    <!-- Mobile Floating CTA: Meta Optimized Size -->
-    <div class="floating-action md:hidden">
+    <!-- Mobile Floating CTA: Meta Optimized -->
+    <div class="floating-cta md:hidden">
         <button onclick="window.open('#', '_blank')" class="w-full py-5 bg-[#06C755] text-white font-bold rounded-full shadow-[0_15px_40px_rgba(6,199,85,0.4)] flex items-center justify-center space-x-4 text-lg active:scale-95 transition-transform">
             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.121.303.079.778.039 1.085l-.171 1.047c-.052.313-.252 1.223 1.083.667 1.335-.556 7.203-4.243 9.831-7.262 1.748-1.849 2.125-3.844 2.125-5.732z"/></svg>
             <span class="tracking-widest">無料診断を予約</span>
@@ -289,11 +379,11 @@
         const scanningText = document.getElementById('scanningText');
 
         const scanStages = [
-            "Initializing Seoul Link...",
-            "Mapping body architecture...",
-            "Analyzing adipose layers...",
-            "Applying K-Idol standards...",
-            "Finalizing silhouette..."
+            "Initializing Seoul HQ Database...",
+            "Mapping musculoskeletal architecture...",
+            "Analyzing localized fat map...",
+            "Optimizing for K-Idol aesthetics...",
+            "Finalizing divine silhouette..."
         ];
 
         let stageIdx = 0;
@@ -301,7 +391,7 @@
             if (stageIdx < scanStages.length) {
                 scanningText.textContent = scanStages[stageIdx];
                 stageIdx++;
-                setTimeout(updateScanningText, 700);
+                setTimeout(updateScanningText, 600);
             }
         };
 
@@ -315,9 +405,9 @@
             }
 
             diagnoseBtn.disabled = true;
-            diagnoseBtn.innerHTML = `<span class="animate-pulse">SCANNING...</span>`;
+            diagnoseBtn.innerHTML = `<span class="animate-pulse">CONNECTING...</span>`;
             resultArea.classList.remove('hidden');
-            aiTextResult.textContent = "AIが韓国・江南のデータと照合中。理想のラインを描いています...";
+            aiTextResult.textContent = "AIが韓国・江南の最新データと照合中。あなたの理想のシルエットを描いています...";
             aiImageContainer.classList.add('hidden');
             
             resultArea.scrollIntoView({ behavior: 'smooth' });
@@ -325,7 +415,7 @@
             updateScanningText();
 
             try {
-                const textPrompt = `あなたは韓国・江南の最高級クリニックのアドバイザーです。ユーザーの憧れ: "${targetStyle}" 悩みの部位: "${concernArea}"。洗練された品位ある口調で150文字程度のアドバイスを。`;
+                const textPrompt = `あなたは韓国・江南（カンナム）の最高級美容クリニックのアドバイザーです。ユーザーの憧れ: "${targetStyle}" 悩みの部位: "${concernArea}"。某韓国アイドルが好きな女性に向けて、キラキラした品位ある口調で180文字程度のアドバイスを。`;
                 const textResult = await fetchWithRetry(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -334,7 +424,7 @@
                 aiTextResult.textContent = textResult.candidates?.[0]?.content?.parts?.[0]?.text;
 
                 aiImageContainer.classList.remove('hidden');
-                const imagePrompt = `Luxurious fashion portrait of beautiful South Korean woman with perfect slim elegant divine silhouette, like a K-pop idol in a high-end Seoul studio, focusing on her refined ${concernArea}. Soft glowing lighting, 8k, extremely detailed, like a ${targetStyle}.`;
+                const imagePrompt = `Epic professional fashion portrait of a gorgeous fit young South Korean woman with a perfect slim elegant divine silhouette, like a top K-pop idol in a high-end Seoul concept studio. Focusing on her perfectly refined ${concernArea} and seamless body line. Soft aesthetic glowing lighting, 8k resolution, extremely detailed, like a ${targetStyle}.`;
                 const imageResult = await fetchWithRetry(`https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key=${apiKey}`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -345,11 +435,11 @@
                 imageLoadingOverlay.classList.add('hidden');
 
             } catch (error) {
-                aiTextResult.textContent = "エラーが発生しました。接続を確認してください。";
+                aiTextResult.textContent = "通信エラーが発生しました。接続を確認してください。";
                 imageLoadingOverlay.classList.add('hidden');
             } finally {
                 diagnoseBtn.disabled = false;
-                diagnoseBtn.innerHTML = `<span>Re-Scan Start</span>`;
+                diagnoseBtn.innerHTML = `<span>RE-SCAN START</span>`;
             }
         });
     </script>
