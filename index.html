@@ -13,12 +13,13 @@
             --k-pink: #f3a3a3;
             --k-pink-light: #fff5f5;
             --k-accent: #ff8e8e;
+            --soft-dark: #475569;
         }
         body {
             font-family: 'Noto Sans JP', 'Noto Sans KR', sans-serif;
             scroll-behavior: smooth;
             background-color: #ffffff;
-            color: #1a1a1a;
+            color: var(--soft-dark);
             -webkit-text-size-adjust: 100%;
             font-size: 15px;
         }
@@ -85,13 +86,14 @@
 
         .hero-title {
             font-size: clamp(2.8rem, 12vw, 7.5rem);
-            line-height: 1;
-            text-shadow: 0 4px 15px rgba(255, 255, 255, 0.9), 0 0 20px rgba(243, 163, 163, 0.1);
-            letter-spacing: -0.02em;
+            line-height: 1.1;
+            color: var(--soft-dark);
+            text-shadow: 0 4px 15px rgba(255, 255, 255, 1);
+            letter-spacing: -0.01em;
         }
         
         .text-neon {
-            text-shadow: 0 0 20px rgba(243, 163, 163, 0.6), 0 0 40px rgba(243, 163, 163, 0.2);
+            text-shadow: 0 0 20px rgba(243, 163, 163, 0.2), 0 4px 15px rgba(255, 255, 255, 0.9);
         }
 
         .image-container {
@@ -103,48 +105,48 @@
         }
         
         .text-k-pink { color: var(--k-pink); }
+        .text-soft-dark { color: var(--soft-dark); }
     </style>
 </head>
 <body class="overflow-x-hidden antialiased text-center">
 
     <!-- Header -->
-    <header class="fixed top-0 w-full z-[100] px-5 py-3 flex justify-between items-center glass-premium border-b border-pink-50/50">
-        <div class="font-mont font-black tracking-[0.3em] text-xs uppercase text-slate-800">SURULIM</div>
-        <div class="flex items-center space-x-2 text-left">
+    <header class="fixed top-0 w-full z-[100] px-5 py-3 flex justify-between items-center glass-premium border-b border-pink-50/50 text-left">
+        <div class="font-mont font-black tracking-[0.3em] text-xs uppercase text-slate-500">SURULIM</div>
+        <div class="flex items-center space-x-2">
             <span class="text-[7px] font-bold text-k-pink uppercase tracking-[0.1em]">Gangnam Quality</span>
             <div class="w-1.5 h-1.5 rounded-full bg-k-pink animate-pulse"></div>
         </div>
     </header>
 
-    <!-- Section 1: Hero (説明文を2行に集約) -->
+    <!-- Section 1: Hero -->
     <section class="relative min-h-[98vh] flex items-center justify-center overflow-hidden px-4">
         <div class="absolute inset-0 z-0 text-left">
-            <div class="w-full h-full bg-cover bg-[center_35%] opacity-85 scale-105 transition-all duration-1000" style="background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
-            <div class="absolute inset-0 bg-gradient-to-b from-white/0 via-white/40 to-white/95"></div>
+            <div class="w-full h-full bg-cover bg-[center_35%] opacity-80 scale-105 transition-all duration-1000" style="background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-white/10 via-white/40 to-white/98"></div>
         </div>
 
         <div class="relative z-10 w-full pt-28 pb-16 flex flex-col items-center">
-            <div class="inline-flex items-center space-x-3 mb-10 px-5 py-2 rounded-full bg-white/95 shadow-xl border border-pink-50 text-left">
-                <span class="text-[9px] font-black tracking-[0.2em] uppercase text-gray-800 text-left">User Satisfaction 98.4%</span>
+            <div class="inline-flex items-center space-x-3 mb-10 px-5 py-2 rounded-full bg-white/95 shadow-lg border border-pink-50 text-left">
+                <span class="text-[9px] font-black tracking-[0.2em] uppercase text-slate-400">User Satisfaction 98.4%</span>
             </div>
 
-            <h1 class="hero-title font-black mb-10 serif text-k-pink">
+            <h1 class="hero-title font-black mb-10 serif">
                 憧れの<br>
                 <span class="italic text-neon relative">神シルエット</span>へ。
             </h1>
 
-            <div class="p-2 mb-12 max-w-sm">
-                <!-- ご要望：2行にまとめて内容を凝縮 -->
-                <p class="text-[13px] md:text-lg text-gray-500 tracking-[0.1em] leading-relaxed font-medium">
-                    憧れの韓国女子スタイルへ、最短ルート。<br>
-                    15分の精密ケアで、理想のラインを現実に。
+            <div class="p-2 mb-12 w-full max-w-lg">
+                <p class="text-[12px] xs:text-[14px] md:text-lg text-slate-500 tracking-[0.05em] leading-loose font-bold">
+                    <span class="block whitespace-nowrap">憧れの韓国女子スタイルへ、最短ルート。</span>
+                    <span class="block whitespace-nowrap mt-1">15分の精密ケアで、理想のラインを現実に。</span>
                 </p>
             </div>
 
             <a href="#ai-sim" class="btn-luminous px-14 py-6 text-white font-black rounded-full text-sm w-full max-w-[280px] tracking-[0.2em] uppercase shadow-2xl">
                 ✨ AI診断で理想を見る
             </a>
-            <p class="mt-8 text-[9px] text-gray-400 font-bold uppercase tracking-widest">K-Beauty AI Engine v5.0</p>
+            <p class="mt-8 text-[9px] text-slate-300 font-bold uppercase tracking-widest">K-Beauty AI Engine v5.0</p>
         </div>
     </section>
 
@@ -152,21 +154,21 @@
     <section class="py-24 px-6 bg-white">
         <div class="max-w-xl mx-auto space-y-12 text-center">
             <div class="space-y-4">
-                <span class="text-k-pink font-black text-[9px] uppercase tracking-[0.5em] font-mont">The Target</span>
-                <h2 class="text-2xl md:text-3xl font-bold serif text-slate-800 leading-tight">
+                <span class="text-k-pink font-black text-[9px] uppercase tracking-[0.5em] font-mont text-center">The Target</span>
+                <h2 class="text-2xl md:text-3xl font-bold serif text-soft-dark leading-tight">
                     某有名韓国アイドル<br>みたいになりたいのに、
                 </h2>
             </div>
             
             <div class="image-container">
-                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="鏡の前で悩むモデル" class="w-full aspect-[4/5] object-cover">
+                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="鏡の前で悩むモデル" class="w-full aspect-[4/5] object-cover text-center">
                 <div class="absolute inset-0 bg-gradient-to-t from-pink-100/40 via-transparent to-transparent"></div>
-                <div class="absolute bottom-8 left-1/2 -translate-x-1/2 w-[88%] glass-premium p-4 rounded-2xl border border-pink-50 text-center text-slate-800">
-                    <p class="text-[11px] font-bold leading-relaxed italic text-slate-900">「ダイエットしても、ここの脂肪だけ落ちない…」</p>
+                <div class="absolute bottom-8 left-1/2 -translate-x-1/2 w-[88%] glass-premium p-4 rounded-2xl border border-pink-50 text-slate-600 text-center">
+                    <p class="text-[11px] font-bold leading-relaxed italic">「ダイエットしても、ここの脂肪だけ落ちない…」</p>
                 </div>
             </div>
 
-            <p class="text-gray-800 leading-loose text-[13px] font-medium max-w-sm mx-auto text-center">
+            <p class="text-slate-400 leading-loose text-[13px] font-medium max-w-sm mx-auto text-center">
                 どんなに我慢しても、落としたいウエストや二の腕の脂肪だけが変わらない。そんなあなたに。韓国発の最新アプローチが、眠っていた「神シルエット」を呼び覚まします。
             </p>
         </div>
@@ -175,13 +177,13 @@
     <!-- Section 3: The Solution -->
     <section class="py-24 bg-[#fff9f9] px-6 overflow-hidden">
         <div class="max-w-xl mx-auto space-y-12 flex flex-col items-center">
-            <div class="space-y-6 text-center">
+            <div class="space-y-6 text-center text-center">
                 <div class="inline-flex items-center justify-center space-x-2 bg-white px-3 py-1 rounded-full border border-pink-100 opacity-80 text-left">
                      <svg width="16" height="10" viewBox="0 0 30 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="rounded-[2px] shadow-sm"><rect width="30" height="20" fill="white"/><circle cx="15" cy="10" r="5" fill="#cd2e3a"/><mask id="m1" maskUnits="userSpaceOnUse" x="10" y="5" width="10" height="10"><circle cx="15" cy="10" r="5"/></mask><g mask="url(#m1)"><rect x="15" y="10" width="10" height="5" fill="#0047a0"/></g></svg>
-                    <span class="text-[7px] font-black tracking-[0.2em] uppercase text-gray-600">Innovation from Seoul</span>
+                    <span class="text-[7px] font-black tracking-[0.2em] uppercase text-gray-500">Innovation from Seoul</span>
                 </div>
-                <h2 class="text-2xl md:text-3xl font-bold serif text-slate-800 leading-tight">
-                    部分痩せに特化した<br><span class="text-k-pink italic">韓国発・最新施術。</span>
+                <h2 class="text-2xl md:text-3xl font-bold serif text-soft-dark leading-tight text-center">
+                    部分痩せに特化した<br><span class="text-k-pink italic text-center">韓国発・最新施術。</span>
                 </h2>
             </div>
 
@@ -191,21 +193,21 @@
 
             <div class="grid grid-cols-1 gap-5 w-full max-w-sm text-left">
                 <div class="bg-white p-7 rounded-[2.2rem] shadow-sm border border-pink-50 relative overflow-hidden">
-                    <div class="relative z-10">
-                        <h3 class="font-bold text-[14px] mb-3 text-slate-800 flex items-center">
+                    <div class="relative z-10 text-left">
+                        <h3 class="font-bold text-[14px] mb-3 text-soft-dark flex items-center">
                             <span class="w-1 h-5 bg-k-pink mr-3 rounded-full"></span>
                             運動・過度な制限はなしでOK
                         </h3>
-                        <p class="text-[11px] text-gray-700 font-medium leading-relaxed">我慢するダイエットはもう終わり。韓国の最新テクノロジーが脂肪細胞そのものを精密にターゲットします。</p>
+                        <p class="text-[11px] text-slate-400 font-medium leading-relaxed">我慢するダイエットはもう終わり。韓国の最新テクノロジーが脂肪細胞そのものを精密にターゲットします。</p>
                     </div>
                 </div>
                 <div class="bg-white p-7 rounded-[2.2rem] shadow-sm border border-pink-50 relative overflow-hidden">
-                    <div class="relative z-10">
-                        <h3 class="font-bold text-[14px] mb-3 text-slate-800 flex items-center">
+                    <div class="relative z-10 text-left">
+                        <h3 class="font-bold text-[14px] mb-3 text-soft-dark flex items-center">
                             <span class="w-1 h-5 bg-k-pink mr-3 rounded-full"></span>
                             リラックスしながら受けるだけ
                         </h3>
-                        <p class="text-[11px] text-gray-700 font-medium leading-relaxed text-left">痛みやダウンタイムはほぼ無く、施術中はスマホを見ながらでもOK。多忙な毎日を送るあなたに最適です。</p>
+                        <p class="text-[11px] text-slate-400 font-medium leading-relaxed">痛みやダウンタイムはほぼ無く、施術中はスマホを見ながらでもOK。多忙な毎日を送るあなたに最適です。</p>
                     </div>
                 </div>
             </div>
@@ -214,46 +216,46 @@
 
     <!-- Section 4: Efficiency -->
     <section class="py-24 bg-white px-6">
-        <div class="max-w-xl mx-auto space-y-12 text-center">
+        <div class="max-w-xl mx-auto space-y-12 text-center text-center">
             <div class="space-y-4">
                 <span class="text-k-pink font-black text-[9px] uppercase tracking-[0.5em] font-mont text-center">Time Performance</span>
-                <h2 class="text-2xl md:text-3xl font-bold serif text-slate-800 leading-tight text-center text-neon">
-                    1回わずか15分。<br><span class="underline decoration-pink-100 decoration-6 underline-offset-4 text-slate-900">忙しくても通える。</span>
+                <h2 class="text-2xl md:text-3xl font-bold serif text-soft-dark leading-tight text-neon">
+                    1回わずか15分。<br><span class="underline decoration-pink-100 decoration-6 underline-offset-4 text-soft-dark">忙しくても通える。</span>
                 </h2>
             </div>
             
             <div class="image-container aspect-video">
-                <img src="https://images.unsplash.com/photo-1510832198440-a52376950479?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="忙しい合間のメンテナンスイメージ" class="w-full h-full object-cover object-[center_15%]">
+                <img src="https://images.unsplash.com/photo-1510832198440-a52376950479?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="15min Magic" class="w-full h-full object-cover object-[center_15%]">
                 <div class="absolute inset-0 bg-gradient-to-t from-pink-900/30 via-transparent to-transparent"></div>
                 <div class="absolute bottom-5 left-1/2 -translate-x-1/2 text-white">
                     <p class="text-[9px] font-bold tracking-[0.5em] uppercase">15 Minutes Magic</p>
                 </div>
             </div>
 
-            <p class="text-gray-800 text-[11px] leading-loose font-bold px-4 max-w-sm mx-auto text-center">
+            <p class="text-slate-400 text-[11px] leading-loose font-bold px-4 max-w-sm mx-auto text-center">
                 ランチタイムや仕事・学校の合間に。本場・江南クオリティのメンテナンスを。多忙なスケジュールをこなしながら、憧れのシルエットを手に入れられます。
             </p>
         </div>
     </section>
 
     <!-- Section 5: AI Diagnostic -->
-    <section id="ai-sim" class="py-24 bg-slate-50 relative overflow-hidden px-6 text-center">
+    <section id="ai-sim" class="py-24 bg-slate-50 relative overflow-hidden px-6 text-center text-center">
         <div class="max-w-xl mx-auto relative z-10 flex flex-col items-center">
             <div class="mb-12">
-                <div class="inline-block px-4 py-1 rounded-full bg-white border border-pink-100 text-k-pink font-bold text-[8px] uppercase tracking-[0.3em] mb-4 shadow-sm text-center">K-Silhouette Predictor v5.0</div>
-                <h2 class="text-2xl font-black serif text-slate-900 leading-tight tracking-tight text-center text-slate-900">✨ 未来の貴女を、<br>今ここで映し出す。</h2>
+                <div class="inline-block px-4 py-1 rounded-full bg-white border border-pink-100 text-k-pink font-bold text-[8px] uppercase tracking-[0.3em] mb-4 shadow-sm">K-Silhouette Predictor v5.0</div>
+                <h2 class="text-2xl font-black serif text-soft-dark leading-tight tracking-tight">✨ 未来の貴女を、<br>今ここで映し出す。</h2>
             </div>
 
             <div class="space-y-8 w-full max-w-sm">
                 <div class="glass-premium p-8 rounded-[2.2rem] shadow-xl border-white text-left">
                     <div class="space-y-10">
                         <div class="space-y-4">
-                            <label class="block text-[10px] font-black text-slate-700 uppercase tracking-[0.3em] font-mont">01. 理想のスターイメージ</label>
-                            <input id="targetStyle" type="text" placeholder="例：有名アイドルのような美脚" class="w-full bg-transparent border-b border-pink-100 focus:border-k-pink py-3 outline-none transition-all text-[13px] font-light text-slate-700">
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] font-mont">01. 理想のスターイメージ</label>
+                            <input id="targetStyle" type="text" placeholder="例：有名アイドルのような美脚" class="w-full bg-transparent border-b border-pink-100 focus:border-k-pink py-3 outline-none transition-all text-[13px] font-light text-slate-500 placeholder-slate-300">
                         </div>
                         <div class="space-y-4 text-left">
-                            <label class="block text-[10px] font-black text-slate-700 uppercase tracking-[0.3em] font-mont">02. スキャンの重点部位</label>
-                            <select id="concernArea" class="w-full bg-transparent border-b border-pink-100 focus:border-k-pink py-3 outline-none appearance-none cursor-pointer text-[13px] font-light text-slate-700">
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] font-mont">02. スキャンの重点部位</label>
+                            <select id="concernArea" class="w-full bg-transparent border-b border-pink-100 focus:border-k-pink py-3 outline-none appearance-none cursor-pointer text-[13px] font-light text-slate-500">
                                 <option value="二の腕">二の腕を華奢に見せたい</option>
                                 <option value="お腹周り・ウエスト">ウエストのくびれを作りたい</option>
                                 <option value="太もも">太ももに隙間がほしい</option>
@@ -267,24 +269,24 @@
                 </div>
 
                 <div id="resultArea" class="hidden space-y-6 w-full text-left">
-                    <div class="glass-premium p-7 rounded-[2rem] border-pink-100 bg-white shadow-lg relative overflow-hidden text-left">
+                    <div class="glass-premium p-7 rounded-[2rem] border-pink-100 bg-white shadow-lg relative overflow-hidden text-left text-left">
                         <div class="flex items-center space-x-3 mb-6 text-k-pink">
                             <span class="relative flex h-2.5 w-2.5">
                                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-k-pink opacity-75"></span>
                                 <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-k-pink"></span>
                             </span>
-                            <span class="text-[8px] font-black uppercase tracking-[0.4em] font-mont">K-Analytical Report</span>
+                            <span class="text-[8px] font-black uppercase tracking-[0.4em] font-mont text-left text-left">K-Analytical Report</span>
                         </div>
-                        <div id="aiTextResult" class="text-[12px] leading-loose text-gray-700 font-medium whitespace-pre-wrap italic"></div>
+                        <div id="aiTextResult" class="text-[12px] leading-loose text-slate-400 font-medium whitespace-pre-wrap italic"></div>
                     </div>
                     
                     <div id="aiImageContainer" class="hidden relative rounded-[2rem] overflow-hidden shadow-2xl bg-white aspect-[4/5] border-4 border-white text-center">
-                        <img id="aiImageResult" src="" alt="AI Predicted Result Image" class="w-full h-full object-cover">
-                        <div id="imageLoadingOverlay" class="absolute inset-0 bg-white/98 flex flex-col items-center justify-center p-10 text-center">
-                            <div class="loading-spinner mb-5"></div>
+                        <img id="aiImageResult" src="" alt="AI Predicted Result" class="w-full h-full object-cover">
+                        <div id="imageLoadingOverlay" class="absolute inset-0 bg-white/98 flex flex-col items-center justify-center p-10">
+                            <div class="loading-spinner mb-5 text-center"></div>
                             <div class="text-center text-center">
-                                <p class="text-[8px] text-k-pink uppercase tracking-[0.6em] font-black mb-3">Rendering Perfection</p>
-                                <p id="scanningText" class="text-gray-600 text-[7px] italic tracking-widest font-mont text-center">Syncing with Seoul HQ...</p>
+                                <p class="text-[8px] text-k-pink uppercase tracking-[0.6em] font-black mb-3 text-center">Rendering Perfection</p>
+                                <p id="scanningText" class="text-slate-300 text-[7px] italic tracking-widest font-mont text-center">Syncing with Seoul HQ...</p>
                             </div>
                             <div class="scanner-effect"></div>
                         </div>
@@ -294,22 +296,25 @@
         </div>
     </section>
 
-    <!-- Section 6: CTA -->
-    <section id="cta" class="relative py-64 bg-white text-slate-800 px-5 overflow-hidden flex flex-col items-center justify-center">
+    <!-- Section 6: CTA (視認性改善Ver) -->
+    <section id="cta" class="relative py-64 bg-white px-5 overflow-hidden flex flex-col items-center justify-center text-center">
         <div class="absolute inset-0 z-0">
-            <div class="w-full h-full bg-cover bg-[center_15%] opacity-85 transition-transform duration-[20s] hover:scale-110" style="background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
-            <div class="absolute inset-0 bg-gradient-to-b from-white/20 via-white/50 to-white"></div>
+            <!-- 写真は変えず、透明感を維持 -->
+            <div class="w-full h-full bg-cover bg-[center_15%] opacity-85 transition-transform duration-[20s] hover:scale-110" style="background-image: url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
+            <!-- グラデーションを僅かに強めて文字の可読性をサポート -->
+            <div class="absolute inset-0 bg-gradient-to-b from-white/40 via-white/70 to-white"></div>
         </div>
         
-        <div class="relative z-10 w-full max-w-xl mx-auto flex flex-col items-center text-center">
-            <span class="text-k-pink font-black text-[10px] uppercase tracking-[1.2em] mb-10 block font-mont italic text-center text-center">The Iconic Journey</span>
+        <div class="relative z-10 w-full max-w-xl mx-auto flex flex-col items-center">
+            <span class="text-k-pink font-black text-[10px] uppercase tracking-[1.2em] mb-10 block font-mont italic text-center">The Iconic Journey</span>
             
-            <h2 class="font-black mb-10 tracking-tighter serif italic text-slate-900 leading-[1.3] text-center">
+            <!-- 文字色を深みのある Slate-800 にし、ソフトな白シャドウで視認性向上 -->
+            <h2 class="font-black mb-10 tracking-tighter serif italic text-slate-800 leading-[1.3] text-center" style="text-shadow: 0 2px 15px rgba(255,255,255,0.9);">
                 <span class="block whitespace-nowrap text-[7.5vw] xs:text-[2.8rem] md:text-7xl">今度はあなたが、</span>
                 <span class="text-k-pink underline decoration-pink-100 decoration-[8px] underline-offset-[10px] block mt-3 whitespace-nowrap text-[7.5vw] xs:text-[2.8rem] md:text-7xl text-center">憧れられる番。</span>
             </h2>
             
-            <p class="text-gray-800 mb-16 text-[13px] tracking-[0.2em] leading-loose font-bold px-4 max-w-xs mx-auto text-center">
+            <p class="text-slate-600 mb-16 text-[13px] tracking-[0.2em] leading-loose font-bold px-4 max-w-xs mx-auto text-center" style="text-shadow: 0 2px 10px rgba(255,255,255,0.8);">
                 韓国アイドルみたいなシルエットへ。<br>
                 公式LINEから、最高の近道を予約してください。
             </p>
@@ -317,16 +322,16 @@
             <button onclick="window.open('#', '_blank')" class="group relative inline-flex items-center justify-center px-10 py-7 bg-[#06C755] text-white font-black rounded-[2.2rem] shadow-[0_20px_50px_rgba(6,199,85,0.3)] active:scale-95 transition-transform w-full max-w-[320px] mx-auto overflow-hidden">
                 <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 <svg class="w-8 h-8 mr-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.121.303.079.778.039 1.085l-.171 1.047c-.052.313-.252 1.223 1.083.667 1.335-.556 7.203-4.243 9.831-7.262 1.748-1.849 2.125-3.844 2.125-5.732z"/></svg>
-                <span class="text-lg xs:text-xl tracking-tighter whitespace-nowrap text-white text-white">LINEで無料診断・予約</span>
+                <span class="text-lg xs:text-xl tracking-tighter whitespace-nowrap">LINEで無料診断・予約</span>
             </button>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-24 bg-white text-gray-600 text-center text-[9px] border-t border-pink-50 flex flex-col items-center">
-        <div class="max-w-6xl mx-auto px-6 text-center text-center">
-            <p class="mb-5 tracking-[0.8em] uppercase font-black font-mont text-xs text-slate-300 select-none text-center">SURULIM GLOBAL</p>
-            <p class="leading-loose font-bold text-gray-600 text-center">
+    <footer class="py-24 bg-white text-slate-300 text-center text-[9px] border-t border-pink-50 flex flex-col items-center text-center">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <p class="mb-5 tracking-[0.8em] uppercase font-black font-mont text-xs text-slate-200 select-none text-center">SURULIM GLOBAL</p>
+            <p class="leading-loose font-bold text-slate-300 text-center text-center">
                 Seoul HQ: Gangnam-gu, Seoul, KR | Tokyo Branch: Minato-ku, JP <br>
                 &copy; 2024 SURULIM Group. All Rights Reserved. <br>
                 <span class="opacity-60 block mt-6 max-w-xs mx-auto leading-relaxed font-normal text-center">※施術効果には個人差があります。科学的根拠に基づいた精密シミュレーションを提供しています。</span>
@@ -335,10 +340,10 @@
     </footer>
 
     <!-- Mobile Floating CTA -->
-    <div class="floating-cta md:hidden">
+    <div class="floating-cta md:hidden text-center text-center">
         <button onclick="window.open('#', '_blank')" class="w-full py-5 bg-[#06C755] text-white font-bold rounded-full shadow-[0_15px_40px_rgba(6,199,85,0.4)] flex items-center justify-center space-x-4 text-lg active:scale-95 transition-transform">
             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.121.303.079.778.039 1.085l-.171 1.047c-.052.313-.252 1.223 1.083.667 1.335-.556 7.203-4.243 9.831-7.262 1.748-1.849 2.125-3.844 2.125-5.732z"/></svg>
-            <span class="tracking-widest text-white">無料診断を予約</span>
+            <span class="tracking-widest">無料診断を予約</span>
         </button>
     </div>
 
